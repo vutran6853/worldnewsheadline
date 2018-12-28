@@ -5,8 +5,13 @@ const port = process.env.SERVER_PORT || 3002;
 const cors = require('cors');
 const app = express();
 const graphqlHTTP = require('express-graphql');
-const { getEverthingById } = require('./controllers/newsData');
 const schema = require('./schema/schema');
+
+const { getUSNews, getWorldNews, getLifeStyleNews, 
+        getOpinionNews, getPoliticsNews, getTVNews,
+        getTopHeadlineByCountry,
+      } = require('./controllers/newsData');
+
 
 app.use(cors());
 app.use(json());
@@ -19,7 +24,13 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 ////  News Endpoint
-app.get('/api/getEverthingById/:id', getEverthingById)
+app.get('/api/getUSNews', getUSNews)
+app.get('/api/getWorldNews', getWorldNews)
+app.get('/api/getLifeStyleNews', getLifeStyleNews)
+app.get('/api/getOpinionNews', getOpinionNews)
+app.get('/api/getPoliticsNews', getPoliticsNews)
+app.get('/api/getTVNews', getTVNews)
+app.post('/api/getTopHeadlineByCountry', getTopHeadlineByCountry)
 
 app.listen(port, () => {
   console.log(`Server is UP and listening on port ${ port }`)
