@@ -2,10 +2,10 @@ const axios = require('axios');
 axios.defaults.headers.common['x-api-key'] = process.env.REACT_APP_NEWSAPI_KEY
 
 let getUSNews = (req, res, next) => {
-
-  axios.get('https://newsapi.org/v2/everything?q=us&from=2018-11-27&sortBy=publishedAt')
+  console.log('HIT line 5')
+  axios.get('https://newsapi.org/v2/everything?q=us&sortBy=publishedAt')
   .then((response) => {
-    // console.log(response.data)
+    console.log(response.data)
     res.status(200).send(response.data)
   })
   .catch((error) => {
@@ -15,7 +15,7 @@ let getUSNews = (req, res, next) => {
 
 let getWorldNews = (req, res, next) => {
 
-  axios.get('https://newsapi.org/v2/everything?q=world&from=2018-11-27&sortBy=publishedAt')
+  axios.get('https://newsapi.org/v2/everything?q=world&sortBy=publishedAt')
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -27,7 +27,7 @@ let getWorldNews = (req, res, next) => {
 
 let getLifeStyleNews = (req, res, next) => {
 
-  axios.get('https://newsapi.org/v2/everything?q=lifestyle&from=2018-11-27&sortBy=publishedAt')
+  axios.get('https://newsapi.org/v2/everything?q=lifestyle&sortBy=publishedAt')
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -39,7 +39,7 @@ let getLifeStyleNews = (req, res, next) => {
 
 let getOpinionNews = (req, res, next) => {
 
-  axios.get('https://newsapi.org/v2/everything?q=opinion&from=2018-11-27&sortBy=publishedAt')
+  axios.get('https://newsapi.org/v2/everything?q=opinion&sortBy=publishedAt')
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -51,7 +51,7 @@ let getOpinionNews = (req, res, next) => {
 
 let getPoliticsNews = (req, res, next) => {
 
-  axios.get('https://newsapi.org/v2/everything?q=politics&from=2018-11-27&sortBy=publishedAt')
+  axios.get('https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt')
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -63,7 +63,7 @@ let getPoliticsNews = (req, res, next) => {
 
 let getTVNews = (req, res, next) => {
 
-  axios.get('https://newsapi.org/v2/everything?q=tv&from=2018-11-27&sortBy=publishedAt')
+  axios.get('https://newsapi.org/v2/everything?q=tv&sortBy=publishedAt')
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)

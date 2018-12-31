@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Container } from 'reactstrap';
 
+import css from './world.scss';
+
 class World extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +23,11 @@ class World extends Component {
       console.log(`Danger FrontEnd ${ error }`)
     });
   }
+  ////  Route to singleTopicInfo to view
+  handleTopicInfo = (value, image) => {
+    console.log(value)
+    this.props.history.push('/:world/singleTopicInfo2', { topic: value })
+  }
 
   render() {
     let { worldNewsData } = this.state;
@@ -29,7 +36,7 @@ class World extends Component {
       console.log(value, index)
       return(
          <Container>
-          <Card>
+          <Card onClick={ () => this.handleTopicInfo(value) }>
             <CardImg top width="100%" src={ value.urlToImage } alt={ value.title }/>
             <CardBody>
               <CardTitle>title: { value.title }</CardTitle>

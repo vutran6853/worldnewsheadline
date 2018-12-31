@@ -8,6 +8,8 @@ import TV from './components/category/t.v/T.V';
 import US from './components/category/u.s/U.S';
 import World from './components/category/world/World';
 import TopHeadline from './components/category/topHeadline/topHeadline';
+import SingleTopicInfo from './components/singleTopicInfo/SingleTopicInfo';
+import SingleTopicInfo2 from './components/singleTopicInfo/SingleTopicInfo2';
 
 export default (
     <Switch>
@@ -19,5 +21,7 @@ export default (
       <Route path='/us' component={ US }></Route>
       <Route path='/world' component={ World }></Route>
       <Route path='/topHeadline' component={ TopHeadline }></Route>
+      <Route path='/singleTopicInfo' component={ SingleTopicInfo }></Route>
+      <Route path='/:id/singleTopicInfo2' component={ SingleTopicInfo2 }></Route>
     </Switch>
 )

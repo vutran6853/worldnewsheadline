@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button, Container } from 'reactstrap';
 
 const category = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
 
@@ -31,7 +33,8 @@ class TopHeadline extends Component {
       userInput: '',
       selectCountry: '',
       value: '',
-      suggestions: []
+      suggestions: [],
+      topHeadlineData: [],
      }
   }
 
@@ -79,15 +82,16 @@ class TopHeadline extends Component {
 
     axios.post('/api/getTopHeadlineByCountry', { country: selectCountry, category: value })
     .then((response) => {
-      console.log(response.data)
+      // console.log(response.data)
+      this.setState({ topHeadlineData: response.data.articles })
     })
-
-
+    .catch((error) => {
+      console.log(`Danger FrontEnd ${ error }`)
+    });
   }
 
   render() {
-    let { country } = this.state;
-    const { value, suggestions } = this.state;
+    let { country, topHeadlineData, value, suggestions } = this.state;
 
     let displayCountry = country.map((value, index) => {
       // console.log(value, index)
@@ -96,11 +100,30 @@ class TopHeadline extends Component {
       )
     });
 
-    const inputProps = {
+    let inputProps = {
       placeholder: 'Type a programming language',
       value,
       onChange: this.onChange
     };
+
+    let displayTopHeadline = topHeadlineData.map((value, index) => {
+      // console.log(value, index)
+      return(
+         <Container>
+          <Card>
+            <CardImg top width="100%" src={ value.urlToImage } alt={ value.title }/>
+            <CardBody>
+              <CardTitle>title: { value.title }</CardTitle>
+              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardText>author: { value.author }</CardText>
+              <CardText>content: { value.content }</CardText>
+              <CardText>publishedAt: { value.publishedAt }</CardText>
+              <a href={ value.url }>link: { value.title }</a>
+            </CardBody>
+          </Card>
+        </Container>
+      )
+    });
 
     return (
       <div>
@@ -120,7 +143,9 @@ class TopHeadline extends Component {
         <button onClick={ () => this.handleSubmit() }>Search</button>
 
         {/* <input onChange={ (e) => this.handleCategory(e.target.value)} placeholder='Enter '></input> */}
-
+        <div>
+          { displayTopHeadline }
+        </div>
       </div>
     );
   }

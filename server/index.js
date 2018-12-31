@@ -12,6 +12,7 @@ const { getUSNews, getWorldNews, getLifeStyleNews,
         getTopHeadlineByCountry,
       } = require('./controllers/newsData');
 
+const { topstories } = require('./controllers/newYorkTimeNewsData');
 
 app.use(cors());
 app.use(json());
@@ -32,6 +33,11 @@ app.get('/api/getPoliticsNews', getPoliticsNews)
 app.get('/api/getTVNews', getTVNews)
 app.post('/api/getTopHeadlineByCountry', getTopHeadlineByCountry)
 
+////  NewsYorkTimeNews Endpoint
+app.get('/api/topstories', topstories)
+
+
+////  Start Server 
 app.listen(port, () => {
   console.log(`Server is UP and listening on port ${ port }`)
 });

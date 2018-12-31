@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Container } from 'reactstrap';
 
+import css from './politics.scss';
+
 class Politics extends Component {
   constructor(props) {
     super(props)
@@ -22,6 +24,12 @@ class Politics extends Component {
     });
   }
 
+  ////  Route to singleTopicInfo to view
+  handleTopicInfo = (value, image) => {
+    console.log(value)
+    this.props.history.push('/:us/singleTopicInfo2', { topic: value })
+  }
+
   render() {
     let { politicsNewsData } = this.state;
 
@@ -29,7 +37,7 @@ class Politics extends Component {
       console.log(value, index)
       return(
          <Container>
-          <Card>
+          <Card onClick={ () => this.handleTopicInfo(value) }>
             <CardImg top width="100%" src={ value.urlToImage } alt={ value.title }/>
             <CardBody>
               <CardTitle>title: { value.title }</CardTitle>
